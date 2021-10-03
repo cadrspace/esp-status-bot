@@ -25,9 +25,28 @@ const int led = 13;
 
 int counter = 0;
 
+float notes[7] = {
+  130.81, // C3
+  146.83, // D3
+  164.81, // E3
+  174.61, // F3
+  196.00, // G3
+  220.00, // A3
+  246.94  // B3
+};
+
 ICACHE_RAM_ATTR void detectsMovement() {
   counter++;
-  tone(ZOOMER,(int)random(500,10000),(unsigned long )1000);
+
+  float m = random(1, 3);
+
+  int n1 = random(0, 8);
+  int n2 = (n1 + random(0, 8)) % 7;
+  int n3 = (n2 + random(0, 8)) % 7;
+
+  tone(ZOOMER, notes[n1] * m,(unsigned long )1000);
+  tone(ZOOMER, notes[n2] * m,(unsigned long )1000);
+  tone(ZOOMER, notes[n3] * m,(unsigned long )1000);
 }
 
 
